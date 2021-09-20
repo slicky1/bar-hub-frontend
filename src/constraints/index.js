@@ -1,0 +1,1 @@
+export const BASE_URL = 'https://bar-hub-backend.herokuapp.com/'
