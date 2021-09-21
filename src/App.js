@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import HomePage from './components/HomePage';
-import CatergoryContainer from './components/CatergoryContainer';
+import CategoryContainer from './components/CategoryContainer';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
       </Route> */}
 
       <h1>Bar App</h1>
-      <CatergoryContainer />
+      <CategoryContainer />
     </div>
   );
 }
