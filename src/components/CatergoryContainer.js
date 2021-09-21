@@ -1,10 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import {BASE_URL} from '../constraints/index.js'
 import Category from './Category.js'
+import CategoryForm from './CategoryForm.js'
 
 export default function CatergoryContainer() {
 
     const [categories, setCategories] = useState(null)
+
+    //Read Operation
 
     useEffect(() => {
         fetch(BASE_URL + 'categories')
@@ -12,27 +15,20 @@ export default function CatergoryContainer() {
          .then(json => setCategories(json))
     }, [])
 
-    // useEffect(() => {
-    //     console.log ("Categories: ")
-    //     console.log(categories)
-    // }, [categories]) 
+    useEffect(() => {
+        console.log ("Categories: ")
+        console.log(categories)
+    }, [categories]) 
 
     function buildCategories() {
-        return categories.map(category => <Category category={category} deleteCategory={deleteCategory} key={category.id}/>)
+        return categories.map(category => <Category category={category}  key={category.name}/>)
     }
 
-    function deleteCategory(category) {
-        fetch(BASE_URL + 'categories/' + category.id, {
-            method: "DELETE"
-        })
-
-        const newCategories = categories.filter(cat => cat.id !== category)
-        setCategories(newCategories)
-    }
-
+    
     return (
         <div>
             {categories && buildCategories()}
+            <CategoryForm createCaterogry={createCaterogry} />
         </div>
     )
 }
