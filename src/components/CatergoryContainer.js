@@ -21,7 +21,20 @@ export default function CatergoryContainer() {
     }, [categories]) 
 
     function buildCategories() {
-        return categories.map(category => <Category category={category}  key={category.name}/>)
+        return categories.map(category => <Category category={category} deleteCategory={deleteCategory} updateCategory={updateCategory} key={category.name}/>)
+    }
+
+
+            //Delete Operation
+    function deleteCategory(category) {
+        fetch(BASE_URL + 'categories/' + category.id, {
+            method: "DELETE"
+        })
+
+    
+
+        const newCategories = categories.filter(cat => cat.id !== category.name)
+        setCategories(newCategories)
     }
 
     
